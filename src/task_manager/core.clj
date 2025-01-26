@@ -8,5 +8,6 @@
   (db/init-db)
   ;; Pega a porta da variável de ambiente ou usa 3000 por padrão
   (let [port (Integer. (or (System/getenv "PORT") "3000"))]
+    (println "Server is running on port:" port) ;; Exibe a porta no console para facilitar o diagnóstico
     ;; Inicia o servidor
     (run-jetty app-routes {:port port :join? false})))
