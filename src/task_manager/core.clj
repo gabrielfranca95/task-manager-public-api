@@ -6,5 +6,7 @@
 (defn -main []
   ;; Inicializa o banco de dados
   (db/init-db)
-  ;; Inicia o servidor
-  (run-jetty app-routes {:port 3000 :join? false}))
+  ;; Pega a porta da variável de ambiente ou usa 3000 por padrão
+  (let [port (Integer. (or (System/getenv "PORT") "3000"))]
+    ;; Inicia o servidor
+    (run-jetty app-routes {:port port :join? false})))
